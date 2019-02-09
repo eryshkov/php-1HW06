@@ -15,7 +15,7 @@
 * для задачи 3 решение находится в папке `02`
 
 ## Main functionality
-* 
+* classes and objects
 
 ## Credits
 * thanks to **Albert Stepantsev** and to his [awesome school](https://pr-of-it.ru/courses/php-1.html)
