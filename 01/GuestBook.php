@@ -16,9 +16,7 @@ class GuestBook extends TextFile
 
     public function save():void
     {
-        $res = fopen($this->filePath, 'wb');
-        fwrite($res, implode(PHP_EOL, $this->storage));
-        fclose($res);
+        $this->write($this->storage);
     }
 
     public function __construct($fileName)

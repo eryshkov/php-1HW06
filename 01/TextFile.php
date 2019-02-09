@@ -4,7 +4,7 @@ class TextFile
 {
     protected $filePath;
 
-    protected function read(): array
+    public function read(): array
     {
         $res = fopen($this->filePath, 'rb');
         $resultArray = [];
@@ -16,6 +16,13 @@ class TextFile
         fclose($res);
 
         return $resultArray;
+    }
+
+    public function write($items):void
+    {
+        $res = fopen($this->filePath, 'wb');
+        fwrite($res, implode(PHP_EOL, $items));
+        fclose($res);
     }
 
     public function __construct($fileName)
