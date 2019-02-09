@@ -18,10 +18,10 @@ class TextFile
         return $resultArray;
     }
 
-    public function write($items):void
+    public function write($strings):void
     {
         $res = fopen($this->filePath, 'wb');
-        fwrite($res, implode(PHP_EOL, $items));
+        fwrite($res, implode(PHP_EOL, $strings));
         fclose($res);
     }
 
