@@ -13,7 +13,7 @@ $prevRecords = readGuestBook($filePath);
 
 $resultArray = array_merge($newRecord, $prevRecords);
 
-$res = fopen($filePath, 'w');
+$res = fopen($filePath, 'wb');
 fwrite($res, implode(PHP_EOL, $resultArray));
 fclose($res);
 

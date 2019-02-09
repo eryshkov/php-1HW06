@@ -15,6 +15,13 @@ class GuestBook
         array_unshift($this->storage, $text);
     }
 
+    public function save():void
+    {
+        $res = fopen($this->storagePath, 'wb');
+        fwrite($res, implode(PHP_EOL, $this->storage));
+        fclose($res);
+    }
+
     public function __construct($fileName)
     {
         $this->storagePath = $fileName;
