@@ -15,7 +15,8 @@
 <body>
 <p></p>
 <div class="container">
-    <a href="/01" class="btn btn-primary">Task 1</a>
+    <a href="/01" class="btn btn-primary">Gues book</a>
+    <a href="/02" class="btn btn-primary">Gallery</a>
 </div>
 </body>
 </html>
