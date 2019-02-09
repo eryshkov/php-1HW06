@@ -24,7 +24,7 @@ class Uploader
         return false;
     }
 
-    public function upload():void
+    public function upload():bool
     {
         if ($this->isUploaded()) {
             $savedImagePath = $this->savedImage['tmp_name'];
@@ -32,8 +32,10 @@ class Uploader
             $imageMimeType = $this->savedImage['type'];
             $isImage = strpos($imageMimeType, 'image') === 0;
             if ($isImage) {
-                move_uploaded_file($savedImagePath, __DIR__ . '/img/' . $imageName);
+                return move_uploaded_file($savedImagePath, __DIR__ . '/img/' . $imageName);
             }
         }
+
+        return false;
     }
 }
