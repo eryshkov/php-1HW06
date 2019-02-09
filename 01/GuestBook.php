@@ -1,9 +1,8 @@
 <?php
 
-class GuestBook
+class GuestBook extends TextFile
 {
     protected $storage;
-    protected $storagePath;
 
     public function getData():array
     {
@@ -17,28 +16,14 @@ class GuestBook
 
     public function save():void
     {
-        $res = fopen($this->storagePath, 'wb');
+        $res = fopen($this->filePath, 'wb');
         fwrite($res, implode(PHP_EOL, $this->storage));
         fclose($res);
     }
 
     public function __construct($fileName)
     {
-        $this->storagePath = $fileName;
-        $this->storage = $this->readGuestBook($fileName);
-    }
-
-    protected function readGuestBook($fileName): array
-    {
-        $res = fopen($fileName, 'rb');
-        $resultArray = [];
-
-        while (false !== $str = fgets($res)) {
-            $resultArray[] = trim($str);
-        }
-
-        fclose($res);
-
-        return $resultArray;
+        parent::__construct($fileName);
+        $this->storage = $this->read();
     }
 }
