@@ -44,3 +44,10 @@ function getCurrentUser()
 
     return null;
 }
+
+function writeLog($fileName, $userName, $imageName)
+{
+    $date = date(DATE_ATOM);
+    $logString = [$date, $userName, 'save image', $imageName];
+    file_put_contents($fileName, implode(' | ', $logString) . PHP_EOL, FILE_APPEND);
+}

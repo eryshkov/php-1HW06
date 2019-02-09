@@ -26,15 +26,15 @@ class Uploader
 
     public function upload(): array
     {
-        $result = ['success' => false, 'isImage' => null];
+        $result = ['success' => false, 'isImage' => null, 'imageName' => null];
 
         if ($this->isUploaded()) {
             $savedImagePath = $this->savedImage['tmp_name'];
-            $imageName = $this->savedImage['name'];
+            $result['imageName'] = $this->savedImage['name'];
             $imageMimeType = $this->savedImage['type'];
             $result['isImage'] = strpos($imageMimeType, 'image') === 0;
             if (true === $result['isImage']) {
-                $result['success'] = move_uploaded_file($savedImagePath, __DIR__ . '/img/' . $imageName);
+                $result['success'] = move_uploaded_file($savedImagePath, __DIR__ . '/img/' . $result['imageName']);
             }
         }
 

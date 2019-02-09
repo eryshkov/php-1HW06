@@ -16,8 +16,11 @@ $uploadResult = $imageUploader->upload();
 
 $isSuccess = $uploadResult['success'];
 $isImage = $uploadResult['isImage'];
+$imageName = $uploadResult['imageName'];
 
 if (true === $isSuccess) {
+    writeLog(__DIR__ . '/img/log.txt', $userName, $imageName);
+
     header('Location:' . '/02/');
     exit;
 } elseif (false === $isImage) {
