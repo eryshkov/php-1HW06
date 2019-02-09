@@ -4,7 +4,10 @@ class GuestBook
 {
     protected $storage;
 
-
+    public function getData():array
+    {
+        return $this->storage;
+    }
 
     public function __construct($fileName)
     {
