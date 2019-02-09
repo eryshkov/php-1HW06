@@ -10,14 +10,16 @@ class GuestBook extends TextFile
         return $this->storage;
     }
 
-    public function append($text):void
+    public function append($text):GuestBook
     {
         array_unshift($this->storage, $text);
+        return $this;
     }
 
-    public function save():void
+    public function save():GuestBook
     {
         $this->write($this->storage);
+        return $this;
     }
 
     public function __construct($fileName)

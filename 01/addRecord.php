@@ -3,8 +3,8 @@
 $myGuestBook = include __DIR__ . '/index.php';
 
 if (isset($_POST['message'])) {
-    $myGuestBook->append($_POST['message']);
-    $myGuestBook->save();
+    //Применил возврат $this из метода, что дает возможность сразу вызвать следующий метод
+    $myGuestBook->append($_POST['message'])->save();
 
     header('Location:' . '/01/');
     exit;
