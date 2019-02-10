@@ -1,5 +1,5 @@
 <?php
-include __DIR__ . '/TextFile.php';
+require_once __DIR__ . '/TextFile.php';
 
 class GuestBook extends TextFile
 {

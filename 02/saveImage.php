@@ -2,7 +2,7 @@
 session_start();
 
 include __DIR__ . '/functions.php';
-include __DIR__ . '/Uploader.php';
+require_once __DIR__ . '/Uploader.php';
 
 if (null === getCurrentUser()) {
     header('Location: ' . '/02/login.php');
