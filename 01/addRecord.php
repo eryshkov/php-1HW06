@@ -1,6 +1,6 @@
 <?php
 
-$myGuestBook = include __DIR__ . '/index.php';
+$myGuestBook = new GuestBook(__DIR__ .'/guestBook.txt');
 
 if (isset($_POST['message'])) {
     //Применил возврат $this из метода, что дает возможность сразу вызвать следующий метод

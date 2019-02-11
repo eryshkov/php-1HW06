@@ -49,4 +49,3 @@ $guestBookRecords = $myGuestBook->getData();
 </div>
 </body>
 </html>
-<?php return $myGuestBook; ?>
