@@ -39,7 +39,10 @@ assert(false === checkPassword('none2', ''));
 function getCurrentUser()
 {
     if (isset($_SESSION['user'])) {
-        return $_SESSION['user'];
+        $user = $_SESSION['user'];
+        if (existsUser($user)) {
+            return $user;
+        }
     }
 
     return null;

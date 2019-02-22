@@ -8,14 +8,15 @@ if (null != getCurrentUser()) {
     exit();
 }
 
-$userName = '';
-$userPassword = '';
-
 if (isset($_POST['login'])) {
     $userName = $_POST['login'];
+} else {
+    $userName = '';
 }
 if (isset($_POST['password'])) {
     $userPassword = $_POST['password'];
+} else {
+    $userPassword = '';
 }
 
 if (checkPassword($userName, $userPassword)) {
