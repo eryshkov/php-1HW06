@@ -2,8 +2,8 @@
 
 class Uploader
 {
-    protected $formFieldName;
-    protected $savedImage;
+    protected $formFieldName = '';
+    protected $savedImage = '';
 
     public function __construct($formFieldName)
     {

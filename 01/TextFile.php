@@ -2,7 +2,7 @@
 
 class TextFile
 {
-    protected $filePath;
+    protected $filePath = '';
 
     public function __construct($fileName)
     {
