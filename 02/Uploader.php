@@ -16,7 +16,6 @@ class Uploader
             $savedImage = $_FILES[$this->formFieldName];
 
             if (0 === $savedImage['error']) {
-                $this->savedImage = $savedImage;
                 return true;
             }
         }
@@ -24,20 +23,26 @@ class Uploader
         return false;
     }
 
-    public function upload(): array
+    /**
+     * @return bool
+     */
+    public function upload(): bool
     {
-        $result = ['success' => false, 'isImage' => null, 'imageName' => null];
-
         if ($this->isUploaded()) {
+            $this->savedImage = $_FILES[$this->formFieldName];
+
             $savedImagePath = $this->savedImage['tmp_name'];
-            $result['imageName'] = $this->savedImage['name'];
+            $imageName = $this->savedImage['name'];
+
             $imageMimeType = $this->savedImage['type'];
-            $result['isImage'] = strpos($imageMimeType, 'image') === 0;
-            if (true === $result['isImage']) {
-                $result['success'] = move_uploaded_file($savedImagePath, __DIR__ . '/img/' . $result['imageName']);
+            $isImage = strpos($imageMimeType, 'image') === 0;
+
+            if (true === $isImage) {
+                move_uploaded_file($savedImagePath, __DIR__ . '/img/' . $imageName);
+                return true;
             }
         }
 
-        return $result;
+        return false;
     }
 }
