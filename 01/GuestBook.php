@@ -11,18 +11,18 @@ class GuestBook extends TextFile
         $this->storage = $this->read();
     }
 
-    public function getData():array
+    public function getData(): array
     {
         return $this->storage;
     }
 
-    public function append($text):GuestBook
+    public function append($text): GuestBook
     {
-        array_unshift($this->storage, $text);
+        $this->storage[] = $text;
         return $this;
     }
 
-    public function save():GuestBook
+    public function save(): GuestBook
     {
         $this->write($this->storage);
         return $this;
