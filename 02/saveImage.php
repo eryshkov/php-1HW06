@@ -15,7 +15,7 @@ $imageUploader = new Uploader('image');
 $uploadResult = $imageUploader->upload();
 
 if (true === $uploadResult) {
-    writeLog(__DIR__ . '/img/log.txt', $userName, $imageName);
+    writeLog(__DIR__ . '/img/log.txt', $userName, 'image');
 
     header('Location:' . '/02/');
     exit;
