@@ -5,6 +5,12 @@ class GuestBook extends TextFile
 {
     protected $storage;
 
+    public function __construct($fileName)
+    {
+        parent::__construct($fileName);
+        $this->storage = $this->read();
+    }
+
     public function getData():array
     {
         return $this->storage;
@@ -20,11 +26,5 @@ class GuestBook extends TextFile
     {
         $this->write($this->storage);
         return $this;
-    }
-
-    public function __construct($fileName)
-    {
-        parent::__construct($fileName);
-        $this->storage = $this->read();
     }
 }

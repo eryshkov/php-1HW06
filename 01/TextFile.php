@@ -4,18 +4,20 @@ class TextFile
 {
     protected $filePath;
 
+    public function __construct($fileName)
+    {
+        $this->filePath = $fileName;
+    }
+
     public function read(): array
     {
-        $res = fopen($this->filePath, 'rb');
-        $resultArray = [];
+        $resultArray = file($this->filePath, FILE_IGNORE_NEW_LINES);
 
-        while (false !== $str = fgets($res)) {
-            $resultArray[] = trim($str);
+        if (false !== $resultArray) {
+            return $resultArray;
+        } else {
+            return [];
         }
-
-        fclose($res);
-
-        return $resultArray;
     }
 
     public function write($strings):void
@@ -23,10 +25,5 @@ class TextFile
         $res = fopen($this->filePath, 'wb');
         fwrite($res, implode(PHP_EOL, $strings));
         fclose($res);
-    }
-
-    public function __construct($fileName)
-    {
-        $this->filePath = $fileName;
     }
 }
