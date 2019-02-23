@@ -13,7 +13,11 @@ class GuestBook extends TextFile
 
     public function getData(): array
     {
-        return $this->storage;
+        if (isset($this->storage)) {
+            return $this->storage;
+        } else {
+            return [];
+        }
     }
 
     public function append($text): GuestBook
