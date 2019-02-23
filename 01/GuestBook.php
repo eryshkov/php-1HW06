@@ -3,7 +3,7 @@ require_once __DIR__ . '/TextFile.php';
 
 class GuestBook extends TextFile
 {
-    protected $storage;
+    protected $storage = [];
 
     public function __construct($fileName)
     {
@@ -13,11 +13,7 @@ class GuestBook extends TextFile
 
     public function getData(): array
     {
-        if (isset($this->storage)) {
-            return $this->storage;
-        } else {
-            return [];
-        }
+        return $this->storage;
     }
 
     public function append($text): GuestBook
