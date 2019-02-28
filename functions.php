@@ -54,3 +54,22 @@ function writeLog($fileName, $userName, $imageName)
     $logString = [$date, $userName, 'save image', $imageName];
     file_put_contents($fileName, implode(' | ', $logString) . PHP_EOL, FILE_APPEND);
 }
+
+function getImagesAtDir(string $pathToImagesFolder): array
+{
+    $dirContents = scandir($pathToImagesFolder, SCANDIR_SORT_NONE);
+
+    $images = [];
+
+    foreach ($dirContents as $item) {
+        $fileType = mime_content_type($pathToImagesFolder . $item);
+        $isImage = strpos($fileType, 'image') === 0;
+
+        if ($isImage) {
+            $images[] = $item;
+        }
+
+    }
+
+    return $images;
+}

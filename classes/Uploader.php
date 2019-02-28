@@ -38,7 +38,7 @@ class Uploader
             $isImage = strpos($imageMimeType, 'image') === 0;
 
             if (true === $isImage) {
-                move_uploaded_file($savedImagePath, __DIR__ . '/img/' . $imageName);
+                move_uploaded_file($savedImagePath, __DIR__ . '/../img/' . $imageName);
                 return true;
             }
         }

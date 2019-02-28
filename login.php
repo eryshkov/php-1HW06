@@ -4,7 +4,7 @@ session_start();
 include __DIR__ . '/functions.php';
 
 if (null != getCurrentUser()) {
-    header('Location: ' . '/02/');
+    header('Location: ' . '/gallery.php');
     exit();
 }
 
@@ -21,7 +21,7 @@ if (isset($_POST['password'])) {
 
 if (checkPassword($userName, $userPassword)) {
     $_SESSION['user'] = $userName;
-    header('Location: ' . '/02/');
+    header('Location: ' . '/gallery.php');
     exit();
 }
 ?>
@@ -43,11 +43,22 @@ if (checkPassword($userName, $userPassword)) {
 <body>
 <p></p>
 <div class="container">
-    <form action="/02/login.php" method="post">
-        <label>Login: </label><input type="text" name="login"><br>
-        <label>Password: </label><input type="password" name="password"><br>
-        <button type="submit">Login</button>
-    </form>
+    <div class="row">
+        <div class="col">
+            <a href="/" class="btn btn-primary">Гостевая книга</a>
+            <a href="/gallery.php" class="btn btn-primary">Галерея</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <p></p>
+            <form action="/login.php" method="post">
+                <label>Login: </label><input type="text" name="login"><br>
+                <label>Password: </label><input type="password" name="password"><br>
+                <button type="submit">Login</button>
+            </form>
+        </div>
+    </div>
 </div>
 </body>
 </html>
