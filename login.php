@@ -19,7 +19,7 @@ if (isset($userName, $userPassword)) {
         header('Location: ' . '/gallery.php');
         exit();
     } else {
-        $info = 'Имя пользователя и пароль не верные';
+        $info = 'Имя пользователя и пароль неверные';
     }
 }
 ?>
