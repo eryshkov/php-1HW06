@@ -8,21 +8,19 @@ if (null != getCurrentUser()) {
     exit();
 }
 
-if (isset($_POST['login'])) {
+if (isset($_POST['login'], $_POST['password'])) {
     $userName = $_POST['login'];
-} else {
-    $userName = '';
-}
-if (isset($_POST['password'])) {
     $userPassword = $_POST['password'];
-} else {
-    $userPassword = '';
 }
 
-if (checkPassword($userName, $userPassword)) {
-    $_SESSION['user'] = $userName;
-    header('Location: ' . '/gallery.php');
-    exit();
+if (isset($userName, $userPassword)) {
+    if (checkPassword($userName, $userPassword)) {
+        $_SESSION['user'] = $userName;
+        header('Location: ' . '/gallery.php');
+        exit();
+    } else {
+        $info = 'Имя пользователя и пароль не верные';
+    }
 }
 ?>
 
@@ -49,6 +47,17 @@ if (checkPassword($userName, $userPassword)) {
             <a href="/gallery.php" class="btn btn-primary">Галерея</a>
         </div>
     </div>
+    <?php
+    if (isset($info)) {
+        ?>
+        <div class="row mt-1">
+            <div class="col-auto">
+                <p class="alert-danger"><?php echo $info; ?></p>
+            </div>
+        </div>
+        <?php
+    }
+    ?>
     <div class="row">
         <div class="col">
             <p></p>
