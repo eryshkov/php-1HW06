@@ -20,7 +20,7 @@ class TextFile
         }
     }
 
-    public function write($strings):void
+    public function write($strings): void
     {
         $res = fopen($this->filePath, 'wb');
         fwrite($res, implode(PHP_EOL, $strings));
