@@ -11,9 +11,7 @@ if (null != getCurrentUser()) {
 if (isset($_POST['login'], $_POST['password'])) {
     $userName = $_POST['login'];
     $userPassword = $_POST['password'];
-}
 
-if (isset($userName, $userPassword)) {
     if (checkPassword($userName, $userPassword)) {
         $_SESSION['user'] = $userName;
         header('Location: ' . '/gallery.php');
@@ -22,6 +20,7 @@ if (isset($userName, $userPassword)) {
         $info = 'Имя пользователя и пароль неверные';
     }
 }
+
 ?>
 
 <!doctype html>
