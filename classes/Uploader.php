@@ -3,7 +3,7 @@
 class Uploader
 {
     protected $formFieldName = '';
-    protected $savedImage = '';
+    protected $savedFile = '';
 
     public function __construct($formFieldName)
     {
@@ -13,10 +13,36 @@ class Uploader
     protected function isUploaded(): bool
     {
         if (isset($_FILES[$this->formFieldName])) {
-            $savedImage = $_FILES[$this->formFieldName];
+            $savedFile = $_FILES[$this->formFieldName];
 
-            if (0 === $savedImage['error']) {
+            if (0 === $savedFile['error']) {
                 return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * @return bool
+     */
+    public function uploadImage(): bool
+    {
+        if ($this->upload()) {
+            if (!isset($this->savedFile['moved_name'])) {
+                return false;
+            }
+
+            $movedFilePath = $this->savedFile['moved_name'];
+            $fileName = $this->savedFile['name'];
+
+            $imageMimeType = $this->savedFile['type'];
+            $isImage = strpos($imageMimeType, 'image') === 0;
+
+            if (true === $isImage) {
+                $destFilePath = __DIR__ . '/../img/' . $fileName;
+                $result = rename($movedFilePath, $destFilePath);
+                return $result;
             }
         }
 
@@ -29,18 +55,20 @@ class Uploader
     public function upload(): bool
     {
         if ($this->isUploaded()) {
-            $this->savedImage = $_FILES[$this->formFieldName];
+            $this->savedFile = $_FILES[$this->formFieldName];
 
-            $savedImagePath = $this->savedImage['tmp_name'];
-            $imageName = $this->savedImage['name'];
+            $savedFilePath = $this->savedFile['tmp_name'];
+            $fileName = $this->savedFile['name'];
 
-            $imageMimeType = $this->savedImage['type'];
-            $isImage = strpos($imageMimeType, 'image') === 0;
+            $destFilePath = __DIR__ . '/../file_storage/' . $fileName;
 
-            if (true === $isImage) {
-                move_uploaded_file($savedImagePath, __DIR__ . '/../img/' . $imageName);
-                return true;
+            $result = move_uploaded_file($savedFilePath, $destFilePath);
+            if ($result) {
+                $this->savedFile['moved_name'] = $destFilePath;
+            } else {
+                $this->savedFile['moved_name'] = null;
             }
+            return $result;
         }
 
         return false;

@@ -12,7 +12,7 @@ if (null === getCurrentUser()) {
 $userName = getCurrentUser();
 
 $imageUploader = new Uploader('image');
-$uploadResult = $imageUploader->upload();
+$uploadResult = $imageUploader->uploadImage();
 
 if (true === $uploadResult) {
     writeLog(__DIR__ . '/img/log.txt', $userName, 'image');
