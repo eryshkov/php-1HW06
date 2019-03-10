@@ -28,24 +28,19 @@ class Uploader
      */
     public function uploadImage(): bool
     {
-        if ($this->upload()) {
-            if (!isset($this->savedFile['moved_name'])) {
-                return false;
-            }
+        if ($this->isUploaded()) {
+            $this->savedFile = $_FILES[$this->formFieldName];
 
-            $movedFilePath = $this->savedFile['moved_name'];
-            $fileName = $this->savedFile['name'];
-
+            $savedImagePath = $this->savedFile['tmp_name'];
+            $imageName = $this->savedFile['name'];
             $imageMimeType = $this->savedFile['type'];
+
             $isImage = strpos($imageMimeType, 'image') === 0;
 
             if (true === $isImage) {
-                $destFilePath = __DIR__ . '/../img/' . $fileName;
-                $result = rename($movedFilePath, $destFilePath);
-                return $result;
+                return move_uploaded_file($savedImagePath, __DIR__ . '/../img/' . $imageName);
             }
         }
-
         return false;
     }
 
@@ -63,11 +58,7 @@ class Uploader
             $destFilePath = __DIR__ . '/../file_storage/' . $fileName;
 
             $result = move_uploaded_file($savedFilePath, $destFilePath);
-            if ($result) {
-                $this->savedFile['moved_name'] = $destFilePath;
-            } else {
-                $this->savedFile['moved_name'] = null;
-            }
+
             return $result;
         }
 
