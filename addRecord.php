@@ -9,9 +9,9 @@ if (isset($_POST['message'])) {
 
     header('Location:' . '/');
     exit;
-} else {
-    http_response_code(400);
 }
+
+http_response_code(400);
 
 
 

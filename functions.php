@@ -2,8 +2,7 @@
 
 function getUsersList()
 {
-    $users = include __DIR__ . '/users.php';
-    return $users;
+    return include __DIR__ . '/users.php';
 }
 
 assert(false !== (bool)getUsersList());

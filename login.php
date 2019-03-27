@@ -3,7 +3,7 @@ session_start();
 
 include __DIR__ . '/functions.php';
 
-if (null != getCurrentUser()) {
+if (null !== getCurrentUser()) {
     header('Location: ' . '/gallery.php');
     exit();
 }
@@ -16,9 +16,9 @@ if (isset($_POST['login'], $_POST['password'])) {
         $_SESSION['user'] = $userName;
         header('Location: ' . '/gallery.php');
         exit();
-    } else {
-        $info = 'Имя пользователя и пароль неверные';
     }
+
+    $info = 'Имя пользователя и пароль неверные';
 }
 
 ?>

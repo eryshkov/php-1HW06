@@ -15,9 +15,9 @@ class TextFile
 
         if (false !== $resultArray) {
             return $resultArray;
-        } else {
-            return [];
         }
+
+        return [];
     }
 
     public function write($strings): void

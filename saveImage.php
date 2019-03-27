@@ -19,6 +19,6 @@ if (true === $uploadResult) {
 
     header('Location:' . '/gallery.php');
     exit;
-} else {
-    ?>Не удалось сохранить этот файл на сервере<?php
 }
+
+?>Не удалось сохранить этот файл на сервере<?php
